@@ -28,9 +28,7 @@ while True:
         qna[q] = a
 
 #create the tsv-file if it doesn't yet exist
-
-if not os.path.exists(f"{prefix}\\{week}\\Q&A.tsv"):
-    open(f"{prefix}\\{week}\\Q&A.tsv").close()
+open(f"{prefix}\\{week}\\Q&A.tsv", 'w').close()
 
 #add question-answer pairs to tsv file (flashcard for Anki)
 with open(f"{prefix}\\{week}\\Q&A.tsv", 'r+', encoding='utf-8') as flashcard:
