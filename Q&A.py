@@ -27,14 +27,22 @@ while True:
     except KeyError:
         qna[q] = a
 
-#create the tsv-file if it doesn't yet exist
-open(f"{prefix}\\{week}\\Q&A.tsv", 'w').close()
+#create empty set
+existing_content = set()
 
-#add question-answer pairs to tsv file (flashcard for Anki)
-with open(f"{prefix}\\{week}\\Q&A.tsv", 'r+', encoding='utf-8') as flashcard:
-    #take the contents of the textfile
-    flash = flashcard.readlines()
-    # loop over all the question-answer pairs and only add them if they are not already in the flashcard file
+#create the file if it doesn't yet exist
+open(f"{prefix}\\{week}\\Q&A.tsv", 'r', encoding='utf-8').close()
+
+#add current content of the flashcard in the set (this eliminates duplicates)
+with open(f"{prefix}\\{week}\\Q&A.tsv", 'r', encoding='utf-8') as flashcard:
+    existing_content = set(flashcard.readlines())
+
+# open the file in append mode
+with open(f"{prefix}\\{week}\\Q&A.tsv", 'w', encoding='utf-8') as flashcard:
+    # add all question-answer pairs to the file
+    for i in existing_content:
+        flashcard.write(i)
     for i, j in qna.items():
-        if f"{i}:{j}\n" not in flash:
+        #this is a double check that we don't accidently add any duplicate questions to the file
+        if f"{i}:{j}\n" not in existing_content:
             flashcard.write(f"{i}:{j}\n")
