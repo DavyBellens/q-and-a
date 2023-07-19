@@ -31,7 +31,7 @@ while True:
 existing_content = set()
 
 #create the file if it doesn't yet exist
-open(f"{prefix}\\{week}\\Q&A.tsv", 'r', encoding='utf-8').close()
+open(f"{prefix}\\{week}\\Q&A.tsv", 'a+', encoding='utf-8').close()
 
 #add current content of the flashcard in the set (this eliminates duplicates)
 with open(f"{prefix}\\{week}\\Q&A.tsv", 'r', encoding='utf-8') as flashcard:
