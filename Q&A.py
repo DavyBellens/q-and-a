@@ -4,7 +4,7 @@ qna = {}
 #ask which class I am in and which week (of this class) it is
 current_class = input("Which class are you in right now?: ")
 week = input("Which week or topic is this?: ")
-prefix = f".\\{current_class}"
+prefix = "."
 
 #check whether directory for class already exists
 #if not then create it
