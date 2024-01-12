@@ -8,6 +8,4 @@ Then I can start typing the questions and providing the answers.
 
 When I input "STOP" the question-answer pairs get written to a tsv-file, which I can use to make flashcards in Anki.
 
-The questions and answers only get written to the file if they are not already in the file.
-
-If you'd like to use this script, you can edit the variable "prefix" with the path of your desired directory.
+The questions and answers only get written to the file if they are not already in the file (i.e. you can't have duplicate questions in your file).
