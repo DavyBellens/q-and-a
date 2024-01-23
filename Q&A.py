@@ -2,17 +2,17 @@ import os
 
 qna = {}
 #ask which class I am in and which week (of this class) it is
-current_class = input("Which class are you in right now?: ")
-week = input("Which week or topic is this?: ")
+print(f"{'*'*50}\nPlease don't put colons (:) in the questions or answers.\nThis will cause problems when converting to actual flashcards in Anki.\nIf you do use them, they will be replaced with a dash (-).\n\n{'*'*50}\n")
+current_class = input("Which class are you in right now?: ").replace(':', '-')
+week = input("Which week or topic is this?: ").replace(':', '-')
 
 #check whether directory for class already exists
 #if not then create it
-if not os.path.exists('.'):
-    os.mkdir('.')
+if not os.path.exists(f'.\\{current_class}'):
+    os.mkdir(f'.\\{current_class}')
 #check if directory for this week exists, if not then create it
-if not os.path.exists(f".\\{week}"):
-    os.mkdir(f".\\{week}")
-print("Please don't put colons (:) in the questions or answers. This will cause problems when converting to actual flashcards in Anki. If you do use them, they will be replaced with a dash (-).")
+if not os.path.exists(f".\\{current_class}\\{week}"):
+    os.mkdir(f".\\{current_class}\\{week}")
 while True:
     q = input("Please give a question: ").replace(':', '-')
     #to stop the script
@@ -31,14 +31,14 @@ while True:
 existing_content = set()
 
 #create the file if it doesn't yet exist
-open(f".\\{week}\\Q&A.tsv", 'a+', encoding='utf-8').close()
+open(f".\\{current_class}\\{week}\\Q&A.tsv", 'a+', encoding='utf-8').close()
 
 #add current content of the flashcard in the set (this eliminates duplicates)
-with open(f".\\{week}\\Q&A.tsv", 'r', encoding='utf-8') as flashcard:
+with open(f".\\{current_class}\\{week}\\Q&A.tsv", 'r', encoding='utf-8') as flashcard:
     existing_content = set(flashcard.readlines())
 
 # open the file in append mode
-with open(f".\\{week}\\Q&A.tsv", 'w', encoding='utf-8') as flashcard:
+with open(f".\\{current_class}\\{week}\\Q&A.tsv", 'w', encoding='utf-8') as flashcard:
     # add all question-answer pairs to the file
     for i in existing_content:
         flashcard.write(i)
