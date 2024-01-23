@@ -4,7 +4,7 @@ qna = {}
 #ask which class I am in and which week (of this class) it is
 current_class = input("Which class are you in right now?: ")
 week = input("Which week or topic is this?: ")
-prefix = f".\\TI 2023-2024\\{current_class}"
+prefix = f".\\{current_class}"
 
 #check whether directory for class already exists
 #if not then create it
@@ -13,12 +13,13 @@ if not os.path.exists(prefix):
 #check if directory for this week exists, if not then create it
 if not os.path.exists(prefix+f"\\{week}"):
     os.mkdir(prefix+f"\\{week}")
+print("Please don't put colons (:) in the questions or answers. This will cause problems when converting to actual flashcards in Anki. If you do use them, they will be replaced with a dash (-).")
 while True:
-    q = input("Please give a question: ")
+    q = input("Please give a question: ").replace(':', '-')
     #to stop the script
     if q == "STOP":
         break
-    a = input("Please give the answer: ")
+    a = input("Please give the answer: ").replace(':', '-')
     #look if the question is already present in the dictionary
     # if it is it will print out a message saying so
     try:
